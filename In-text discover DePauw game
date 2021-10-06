@@ -1,0 +1,317 @@
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextArea; 
+
+public class TextAdvance { 
+	Font normalFont = new Font("Times New Roman", Font.PLAIN,20);
+	Font titlefont = new Font("Times New Roman", Font.PLAIN, 50);
+	JFrame frame;
+	JPanel paneltext, panelBut, panelGameText, panelChoice;
+	JLabel label;
+	JButton button, choice1, choice2, choice3, choice4;
+	ScreenAction action = new ScreenAction();
+	Container con;
+	ChoiceControl choiceControl = new ChoiceControl();
+	String position = "";
+	JTextArea mainText;
+public TextAdvance(){
+	//frame
+	
+	frame = new JFrame();
+	frame.setSize(800,800);
+	frame.getContentPane().setBackground(Color.yellow);
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setVisible(true);
+	frame.setLayout(null);
+	con = frame.getContentPane();
+	frame.setTitle("Welcome to the text game!");
+	
+	
+	//panel title
+	paneltext = new JPanel();
+	paneltext.setBounds(200, 200, 400, 200);
+	paneltext.setBackground(Color.yellow);
+	frame.add(paneltext);
+
+	
+	//label
+	label = new JLabel();
+	label.setText("DePauw Discovery!");
+	label.setForeground(Color.black);
+	label.setFont(titlefont);
+	paneltext.add(label);
+	
+	//panel 
+	panelBut = new JPanel();
+	panelBut.setBackground(Color.yellow);
+	panelBut.setBounds(300,300,200,200);
+	frame.add(panelBut);
+	
+	//button
+	button = new JButton("START HERE");
+	button.setForeground(Color.yellow);
+	button.setBackground(Color.black);
+	panelBut.add(button);
+	button.addActionListener(action);
+	button.setFocusPainted(false);
+
+}
+
+	
+public void gameScreen() {
+	
+	paneltext.setVisible(false);
+	panelBut.setVisible(false);
+	
+	
+	
+	panelGameText = new JPanel();
+	panelGameText.setBounds(170,200,700,100);
+	panelGameText.setBackground(Color.yellow);
+	
+	
+	mainText = new JTextArea("You're at the gate of DePauw, where do you want to go?");
+	mainText.setBounds(170, 200, 700, 100);
+	mainText.setBackground(Color.yellow);
+	mainText.setForeground(Color.black);
+	mainText.setFont(normalFont);
+	mainText.setLineWrap(true);
+	panelGameText.add(mainText);
+	frame.add(panelGameText);
+	
+	panelChoice = new JPanel();
+	panelChoice.setBackground(Color.yellow);
+	panelChoice.setBounds(170,350,450,300);
+	panelChoice.setLayout(new GridLayout(4,1));
+	frame.add(panelChoice);
+	
+	choice1 = new JButton("Choice 1");
+	choice1.setBackground(Color.black);
+	choice1.setForeground(Color.white);
+	choice1.setFont(normalFont);
+	choice1.setFocusPainted(false);
+	choice1.addActionListener(choiceControl);
+	choice1.setActionCommand("c1");
+	panelChoice.add(choice1);	
+	choice2= new JButton("Choice 2");
+	choice2.setBackground(Color.black);
+	choice2.setForeground(Color.white);
+	choice2.setFont(normalFont);
+	choice2.setFocusPainted(false);
+	choice2.addActionListener(choiceControl);
+	choice2.setActionCommand("c2");
+	panelChoice.add(choice2);	
+	choice3 = new JButton("Choice 3");
+	choice3.setBackground(Color.black);
+	choice3.setForeground(Color.white);
+	choice3.setFont(normalFont);
+	choice3.setFocusPainted(false);
+	choice3.addActionListener(choiceControl);
+	choice3.setActionCommand("c3");
+	panelChoice.add(choice3);	
+	choice4 = new JButton("Choice 4");
+	choice4.setBackground(Color.black);
+	choice4.setForeground(Color.white);
+	choice4.setFocusPainted(false);
+	choice4.setFont(normalFont);
+	choice4.addActionListener(choiceControl);
+	choice4.setActionCommand("c4");
+	panelChoice.add(choice4);
+	
+	gate();
+}	
+public void out() {
+	position = "out";
+	mainText.setText("You are at out of DePauw now. \n Do you want to go in?" );
+	choice1.setText("Yes");
+	choice2.setText("No");
+	choice3.invalidate();
+	choice4.invalidate();
+}
+public void gate() {
+	position = "gate";
+	mainText.setText("You are at the gate now. \n Where do you want to go");
+	choice1.setText("Turn left");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight");
+	choice4.setText("Go back");
+}
+public void admission() {
+	position = "admission";
+	mainText.setText("You are at the office of admission now. \n Where do you want to go next");
+	choice1.setText("Turn left");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight");
+	choice4.setText("Go back");
+}
+public void asbury() {
+	position = "Asbury";
+	mainText.setText("You are at the Asbury hall now. \n Where do you want to go next");
+	choice1.setText("Turn left");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight");
+	choice4.setText("Go back");
+}
+public void rotation() {
+	position = "central";
+	mainText.setText("You are at the rotation now\n Where do you want to go next");
+	choice1.setText("Go straight to East College");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight to Harrison");
+	choice4.setText("Go back");
+}
+public void library() {
+	position = "Library";
+	mainText.setText("You are at the library now. \n Where do you want to go next");
+	choice1.setText("Turn left");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight");
+	choice4.setText("Go back");
+}
+public void gobin() {
+	position = "gobin";
+	mainText.setText("You are at the Gobin Memorial United Methodist now. \n Where do you want to go next");
+	choice1.setText("Turn left");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight");
+	choice4.setText("Go back");
+}
+public void theinn() {
+	position = "theinn";
+	mainText.setText("You are at the Inn hotel now. \n Where do you want to go next");
+	choice1.setText("Turn left");
+	choice2.setText("Turn right");
+	choice3.setText("Go straight");
+	choice4.setText("Go back");
+}
+public void harrison() {
+position = "harrison";
+mainText.setText("You are at the Harrison Hall now. \n Where do you want to go next");
+choice1.setText("Turn left");
+choice2.setText("Turn right");
+choice3.setText("Go straight");
+choice4.setText("Go back");
+}
+public void eastCollege() {
+position = "eastCollege";
+mainText.setText("You are at the East College now. \n Where do you want to go next");
+choice1.setText("Turn left");
+choice2.setText("Turn right");
+choice3.setText("Go straight");
+choice4.setText("Go back");
+}
+public void restaurant() {
+position = "eastCollege";
+mainText.setText("You are at the restaurant now. \n Where do you want to go next");
+choice1.setText("Turn left");
+choice2.setText("Turn right");
+choice3.setText("Go straight");
+choice4.setText("Go back");
+}
+public void frat() {
+position = "frat";
+mainText.setText("You are at the frat of students now. \n Where do you want to go next");
+choice1.setText("Turn left");
+choice2.setText("Turn right");
+choice3.setText("Go straight");
+choice4.setText("Go back");
+}
+public void mason() {
+position = "mason";
+mainText.setText("You are at the Mason now. \n Where do you want to go next");
+choice1.setText("Turn left");
+choice2.setText("Turn right");
+choice3.setText("Go straight");
+choice4.setText("Go back");
+}
+public void plaza() {
+position = "plaza";
+mainText.setText("You are at the Plaza Steward now. \n Where do you want to go next");
+choice1.setText("Turn left");
+choice2.setText("Turn right");
+choice3.setText("Go straight");
+choice4.setText("Go back");
+}
+
+
+
+public class ScreenAction implements ActionListener {
+	public void actionPerformed(ActionEvent event)
+	{
+		gameScreen();
+	}
+}	
+public class ChoiceControl implements ActionListener {
+	public void actionPerformed(ActionEvent event)
+	{
+		String yourChoice = event.getActionCommand();
+		switch(position) {
+		case "gate": 
+			switch(yourChoice) {
+			case "c1": admission(); break;
+			case "c2": asbury(); break;
+			case "c3": rotation(); break;
+			case "c4": out(); break;
+			}
+		break;
+		case "admission": 
+			switch(yourChoice) {
+			case "c1": gobin(); break;
+			case "c2": asbury(); break;
+			case "c3": rotation(); break;
+			case "c4": gate(); break;
+			}
+		break;
+		case "asbury": 
+			switch(yourChoice) {
+			case "c1": theinn(); break;
+			case "c2": admission(); break;
+			case "c3": harrison(); break;
+			case "c4": gate(); break;
+			}
+		break;
+		case "rotation":
+			switch(yourChoice) {
+			case "c1": eastCollege(); break;
+			case "c2": library(); break;
+			case "c3": harrison(); break;
+			case "c4": gate(); break;
+			}
+		break;
+		case "theInn": 
+			switch (yourChoice) {
+			case "c1": restaurant(); break;
+			case "c2": out(); break;
+			case "c3": library(); break;
+			case "c4": gate(); break;
+			}
+		break;
+		case "harrison":
+			switch (yourChoice) {
+			case "c1": eastCollege(); break;
+			case "c2": out(); break;
+			case "c3": frat(); break;
+			case "c4": gate(); break;
+			}
+		break;
+		case"eastCollege": 
+			switch (yourChoice) {
+			case "c1": mason(); break;
+			case "c2": harrison(); break;
+			case "c3": plaza();
+			case "c4": gate(); break;
+			}
+		break;
+		}
+	}
+}	
+}
